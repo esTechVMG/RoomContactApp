@@ -7,12 +7,14 @@ import estech.vmg.roomcontacts.Contacts.ContactDao;
 
 public class AddContactAsync extends AsyncTask<Contact,Void,Void> {
     private ContactDao dao;
-    AddContactAsync(ContactDao dao){
+    public AddContactAsync(ContactDao dao){
         this.dao=dao;
     }
     @Override
     protected Void doInBackground(Contact... contacts) {
-        dao.addContact(contacts[0]);
+        for(Contact a: contacts){
+            dao.addContact(a);
+        }
         return null;
     }
 }

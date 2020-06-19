@@ -2,4 +2,11 @@
     <string name="app_name">Room Contacts</string>
     <string name="fav_item">Favorites</string>
     <string name="remove_all">Remove all</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone">Phone</string>
+    <string name="fav_check">Add to favorites?</string>
+    <string name="email">E-Mail</string>
+    <string name="add_button">Add Contact</string>
+    <string name="age">Age</string>
 </resources>

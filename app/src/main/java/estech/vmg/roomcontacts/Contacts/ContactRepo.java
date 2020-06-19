@@ -6,42 +6,44 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import estech.vmg.roomcontacts.Contacts.Async.AddContactAsync;
+import estech.vmg.roomcontacts.Contacts.Async.RemoveAllContactAsync;
+import estech.vmg.roomcontacts.Contacts.Async.RemoveContactAsync;
+import estech.vmg.roomcontacts.Contacts.Async.UpdateContactAsync;
+
 public class ContactRepo implements ContactDao{
     private ContactDao contactDao;
     private ContactDatabase contactDatabase;
-    public ContactRepo(Context c){
-        contactDatabase=ContactDatabase.getDatabase(c);
+    public ContactRepo(Context context){
+        contactDatabase=ContactDatabase.getDatabase(context);
         contactDao=contactDatabase.userDao();
     }
-
-
     @Override
     public void addContact(Contact contact) {
-        contactDao.addContact(contact);
+        new AddContactAsync(contactDao).execute(contact);
     }
 
     @Override
     public void updateContact(Contact contact) {
-        contactDao.updateContact(contact);
+        new UpdateContactAsync(contactDao).execute(contact);
     }
 
     @Override
     public void deleteContact(Contact contact) {
-        contactDao.deleteContact(contact);
+        new RemoveContactAsync(contactDao).execute(contact);
     }
 
     @Override
     public void deleteAllContacts() {
-        contactDao.deleteAllContacts();
+        new RemoveAllContactAsync(contactDao).execute();
     }
-
     @Override
-    public List<Contact> getAllContacts() {
+    public LiveData<List<Contact>> getAllContacts() {
         return contactDao.getAllContacts();
     }
 
     @Override
-    public List<Contact> searchContact(String search) {
-        return contactDao.searchContact(search);
+    public LiveData<List<Contact>> getFavoriteContacts() {
+        return contactDao.getFavoriteContacts();
     }
 }

@@ -2,12 +2,11 @@ package estech.vmg.roomcontacts.Contacts.Async;
 
 import android.os.AsyncTask;
 
-import estech.vmg.roomcontacts.Contacts.Contact;
 import estech.vmg.roomcontacts.Contacts.ContactDao;
 
-public class DeleteAllContactsAsync extends AsyncTask<Void,Void,Void> {
+public class RemoveAllContactAsync extends AsyncTask<Void,Void,Void> {
     private ContactDao dao;
-    DeleteAllContactsAsync(ContactDao dao){
+    public RemoveAllContactAsync(ContactDao dao){
         this.dao=dao;
     }
     @Override

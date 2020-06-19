@@ -7,12 +7,14 @@ import estech.vmg.roomcontacts.Contacts.ContactDao;
 
 public class UpdateContactAsync extends AsyncTask<Contact,Void,Void> {
     private ContactDao dao;
-    UpdateContactAsync(ContactDao dao){
+    public UpdateContactAsync(ContactDao dao){
         this.dao=dao;
     }
     @Override
     protected Void doInBackground(Contact... contacts) {
-        dao.updateContact(contacts[0]);
+        for(Contact a: contacts){
+            dao.updateContact(a);
+        }
         return null;
     }
 }

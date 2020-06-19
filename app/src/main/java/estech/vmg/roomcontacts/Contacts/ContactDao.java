@@ -1,5 +1,6 @@
 package estech.vmg.roomcontacts.Contacts;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -7,8 +8,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
-import estech.vmg.roomcontacts.Contacts.Contact;
 
 @Dao
 public interface ContactDao {
@@ -25,10 +24,11 @@ public interface ContactDao {
     void deleteAllContacts();
 
     @Query("SELECT * FROM contact")
-    List<Contact> getAllContacts();
+    LiveData<List<Contact>> getAllContacts();
 
-    @Query("SELECT * FROM contact WHERE name LIKE :search OR lastName LIKE :search")
-    List<Contact> searchContact(String search);
+    @Query("SELECT * FROM contact where favorite = 1")
+    LiveData<List<Contact>> getFavoriteContacts();
 
-
+    /*@Query("SELECT * FROM contact WHERE firstName LIKE :search OR lastName LIKE :search")
+    LiveData<List<Contact>> searchContact(String search);*/
 }
